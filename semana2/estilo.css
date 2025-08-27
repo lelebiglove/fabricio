@@ -35,4 +35,38 @@ p.verso{
 .poeta img {
     border-radius: 50%;
 }
+                
+table {
+    width: 60%;
+    border-collapse: collapse;
+    margin: 20px auto;
+    font-family: Arial, sans-serif;
+}
 
+th, td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #4CAF50; /* cor de fundo do cabeçalho */
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #ddd;
+}
+
+table a {
+    color: #1a73e8;
+    text-decoration: none;
+}
+
+table a:hover {
+    text-decoration: underline;
+}
