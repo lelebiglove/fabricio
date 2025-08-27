@@ -5,10 +5,12 @@
     <title>Uma trova - Página HTML</title>
     <style>
       table {
-        width: 50%;
-        margin: 20px auto;
+        width: 45%;
         border-collapse: collapse;
         font-family: 'Arial', sans-serif;
+        margin: 10px;
+        display: inline-block;
+        vertical-align: top;
       }
       th, td {
         padding: 10px;
@@ -24,6 +26,9 @@
       }
       tr:hover {
         background-color: #ddd;
+      }
+      .tables-container {
+        text-align: center;
       }
     </style>
   </head>
@@ -44,25 +49,46 @@
       Autor: Francisco Borges
     </p>
 
-    <h2 style="text-align: center;">Tabela de Bebidas</h2>
-    <table>
-      <tr>
-        <th>Bebida</th>
-        <th>Preço</th>
-      </tr>
-      <tr>
-        <td>Café</td>
-        <td>R$ 3,00</td>
-      </tr>
-      <tr>
-        <td>Chá</td>
-        <td>R$ 2,50</td>
-      </tr>
-      <tr>
-        <td>Suco de Laranja</td>
-        <td>R$ 5,00</td>
-      </tr>
-    </table>
+    <h2 style="text-align: center;">Tabelas de Bebidas</h2>
+    <div class="tables-container">
+      <table>
+        <tr>
+          <th>Bebida</th>
+          <th>Preço</th>
+        </tr>
+        <tr>
+          <td>Café</td>
+          <td>R$ 3,00</td>
+        </tr>
+        <tr>
+          <td>Chá</td>
+          <td>R$ 2,50</td>
+        </tr>
+        <tr>
+          <td>Suco de Laranja</td>
+          <td>R$ 5,00</td>
+        </tr>
+      </table>
+
+      <table>
+        <tr>
+          <th>Bebida</th>
+          <th>Preço</th>
+        </tr>
+        <tr>
+          <td>Refrigerante</td>
+          <td>R$ 4,00</td>
+        </tr>
+        <tr>
+          <td>Água</td>
+          <td>R$ 2,00</td>
+        </tr>
+        <tr>
+          <td>Suco de Uva</td>
+          <td>R$ 6,00</td>
+        </tr>
+      </table>
+    </div>
 
   </body>
 </html>
