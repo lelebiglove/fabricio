@@ -1,55 +1,68 @@
 <!DOCTYPE html>
-
 <html>
   <head>
-   <meta charset="UTF-8">
-      <title>Uma trova - Página HTML</title>
-   </head>
-    <body>
+    <meta charset="UTF-8">
+    <title>Uma trova - Página HTML</title>
+    <style>
+      table {
+        width: 50%;
+        margin: 20px auto;
+        border-collapse: collapse;
+        font-family: 'Arial', sans-serif;
+      }
+      th, td {
+        padding: 10px;
+        text-align: center;
+        border: 1px solid #ddd;
+      }
+      th {
+        background-color: #4CAF50;
+        color: white;
+      }
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+      tr:hover {
+        background-color: #ddd;
+      }
+    </style>
+  </head>
+  <body>
 
-      <img src="https://akamai.sscdn.co/uploadfile/letras/playlists/3/a/b/9/3ab92363f7974d679f4194de9f389b5b.jpg"/>
- 
-      <h1>Uma trova...</h1>
+    <img src="https://akamai.sscdn.co/uploadfile/letras/playlists/3/a/b/9/3ab92363f7974d679f4194de9f389b5b.jpg" alt="Imagem da trova"/>
 
-      <p>
+    <h1>Uma trova...</h1>
 
-         Eu só preciso de hoje<br/>      
+    <p>
+      Eu só preciso de hoje<br/>
+      Pra viver e ser feliz<br/>
+      O passado já me foge<br/>
+      E o futuro nada diz!<br/>
+    </p>
 
-         Pra viver e ser feliz<br/>
+    <p>
+      Autor: Francisco Borges
+    </p>
 
-         O passado já me foge<br/>
+    <h2 style="text-align: center;">Tabela de Bebidas</h2>
+    <table>
+      <tr>
+        <th>Bebida</th>
+        <th>Preço</th>
+      </tr>
+      <tr>
+        <td>Café</td>
+        <td>R$ 3,00</td>
+      </tr>
+      <tr>
+        <td>Chá</td>
+        <td>R$ 2,50</td>
+      </tr>
+      <tr>
+        <td>Suco de Laranja</td>
+        <td>R$ 5,00</td>
+      </tr>
+    </table>
 
-         E o futuro nada diz!<br/>
-
-      </p>
-
-      <br/>
-
-      <p>
-
-         Autor: Francisco Borges
-
-      </p>
-
-      <h2>Tabela de Bebidas</h2>
-      <table border="1">
-         <tr>
-            <th>Bebida</th>
-            <th>Preço</th>
-         </tr>
-         <tr>
-            <td>Café</td>
-            <td>R$ 3,00</td>
-         </tr>
-         <tr>
-            <td>Chá</td>
-            <td>R$ 2,50</td>
-         </tr>
-         <tr>
-            <td>Suco de Laranja</td>
-            <td>R$ 5,00</td>
-         </tr>
-      </table>
-
-   </body>     
+  </body>
 </html>
