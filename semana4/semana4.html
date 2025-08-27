@@ -1,55 +1,103 @@
 <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de Cervejas</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
 
-<html>   
+    #botoes {
+      margin-bottom: 20px;
+    }
 
-   <head>
+    button {
+      margin-right: 10px;
+      padding: 8px 15px;
+      border: none;
+      border-radius: 6px;
+      background-color: #0077cc;
+      color: white;
+      cursor: pointer;
+    }
 
-      <meta charset="UTF-8">      
+    button:hover {
+      background-color: #005fa3;
+    }
 
-   </head>
+    .cerveja-div {
+      background-color: #f0f0f0;
+      padding: 10px;
+      margin: 5px 0;
+      border-radius: 6px;
+      text-align: center;
+      font-size: 18px;
+    }
 
-   
+    table {
+      border-collapse: collapse;
+      width: 50%;
+      margin-top: 10px;
+    }
 
-   <body>
+    th, td {
+      border: 1px solid #888;
+      padding: 10px;
+      text-align: center;
+    }
 
-      <div id="meu amor"><button id="botaoCarregar">Carregando cervejas...</button></div>            
+    th {
+      background-color: #0077cc;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div id="botoes">
+    <button id="botaoCarregar">Mostrar cervejas (divs)</button>
+    <button id="botaoTabela">Mostrar cervejas (tabela)</button>
+    <button id="botaoOrdenar">Ordenar cervejas</button>
+    <button id="botaoEmbaralhar">Embaralhar cervejas</button>
+  </div>
 
-   </body>   
+  <div id="meu_amor"></div>
 
-   
+  <script>
+    let cervejas = ["Guinness", "Desperados", "Becks", "Heineken", "Budweiser"];
 
-   <script>
+    function mostrarDivs() {
+      let div = document.getElementById("meu_amor");
+      div.innerHTML = cervejas.map(item => `<div class="cerveja-div">${item}</div>`).join("");
+    }
 
-      let cervejas = ["Guiness", "Desperados", "Becks"]
+    function mostrarTabela() {
+      let div = document.getElementById("meu_amor");
+      let tabela = `
+        <table>
+          <tr><th>Cervejas</th></tr>
+          ${cervejas.map(item => `<tr><td>${item}</td></tr>`).join("")}
+        </table>
+      `;
+      div.innerHTML = tabela;
+    }
 
-      
+    function ordenarCervejas() {
+      cervejas.sort();
+      mostrarTabela();
+    }
 
-      function transformar(item){
+    function embaralharCervejas() {
+      cervejas.sort(() => Math.random() - 0.5);
+      mostrarTabela();
+    }
 
-         return `<h1>${item}</h1>`
-
-      }
-
-      
-
-      function carregarDiv(){
-
-         let div = document.getElementById("meu amor")
-
-         //let cervejasHtml = [`<h1>${cervejas[0]}</h1>`,`<h1>${cervejas[1]}</h1>`, `<h1>${cervejas[2]}</h1>`] 
-
-         let cervejasHtml = cervejas.map(transformar) 
-
-         div.innerHTML = `${cervejasHtml.join("\n")}`
-
-      }
-
-      
-
-      let botao = document.getElementById("botaoCarregar")
-
-      botao.addEventListener("click", carregarDiv)                 
-
-   </script>
-
+    // Liga os botões
+    document.getElementById("botaoCarregar").addEventListener("click", mostrarDivs);
+    document.getElementById("botaoTabela").addEventListener("click", mostrarTabela);
+    document.getElementById("botaoOrdenar").addEventListener("click", ordenarCervejas);
+    document.getElementById("botaoEmbaralhar").addEventListener("click", embaralharCervejas);
+  </script>
+</body>
 </html>
