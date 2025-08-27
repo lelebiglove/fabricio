@@ -7,3 +7,19 @@ p.verso{
     color: red;
     font-weight: bold; 
 }
+.link-poeta {
+    color: red; 
+    text-decoration: none; 
+    font-weight: bold;
+}
+
+
+.link-poeta:hover {
+    color: darkred;
+    text-decoration: underline;
+}
+
+
+.link-poeta:visited {
+    color: purple;
+}
