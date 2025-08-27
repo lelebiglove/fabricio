@@ -23,3 +23,16 @@ p.verso{
 .link-poeta:visited {
     color: purple;
 }
+.avatar {
+    width: 80px;       
+    height: 80px;
+    border-radius: 50%; 
+    margin-right: 10px; 
+    vertical-align: middle;
+}
+
+
+.poeta img {
+    border-radius: 50%;
+}
+
