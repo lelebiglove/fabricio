@@ -1,49 +1,76 @@
 <!DOCTYPE html>
+color: white;
+}
+</style>
+</head>
+<body>
+<div id="links">
+<a href="#" id="linkDivs">Mostrar times (divs)</a>
+<a href="#" id="linkTabela">Mostrar times (tabela)</a>
+<a href="#" id="linkOrdenar">Ordenar times</a>
+<a href="#" id="linkEmbaralhar">Embaralhar times</a>
+</div>
 
-<html>   
 
-   <head>
+<div id="meu_amor"></div>
 
-      <meta charset="UTF-8">      
 
-   </head>
+<script>
+let times = ["Lakers", "Bulls", "Warriors", "Celtics", "Heat"];
 
-   
 
-   <body>
+const mostrarDivs = (lista) => {
+const div = document.getElementById("meu_amor");
+div.innerHTML = lista.map(item => `<div class="time-div">${item}</div>`).join("");
+};
 
-      <div><button id="botaoCarregar">Carregando cervejas...</button></div>
 
-      <div id="meu amor"></div>            
+const mostrarTabela = (lista) => {
+const div = document.getElementById("meu_amor");
+const tabela = `
+<table>
+<tr><th>Times de Basquete</th></tr>
+${lista.map(item => `<tr><td>${item}</td></tr>`).join("")}
+</table>
+`;
+div.innerHTML = tabela;
+};
 
-   </body>   
 
-   
+const ordenarTimes = (lista) => {
+lista.sort();
+mostrarTabela(lista);
+};
 
-   <script>
 
-      let cervejas = ["Guiness", "Desperados", "Becks"]
+const embaralharTimes = (lista) => {
+lista.sort(() => Math.random() - 0.5);
+mostrarTabela(lista);
+};
 
-      
 
-      //function carregar(){      
+document.getElementById("linkDivs").addEventListener("click", (e) => {
+e.preventDefault();
+mostrarDivs(times);
+});
 
-      const carregarDiv = () => {
 
-         const div = document.getElementById("meu amor")
+document.getElementById("linkTabela").addEventListener("click", (e) => {
+e.preventDefault();
+mostrarTabela(times);
+});
 
-         const cervejasHtml = cervejas.map( item => `<h1>${item}</h1>` ) 
 
-         div.innerHTML = `${cervejasHtml.join("\n")}`
+document.getElementById("linkOrdenar").addEventListener("click", (e) => {
+e.preventDefault();
+ordenarTimes(times);
+});
 
-      }
 
-      
-
-      let botao = document.getElementById("botaoCarregar")
-
-      botao.addEventListener("click", carregarDiv)                 
-
-   </script>
-
+document.getElementById("linkEmbaralhar").addEventListener("click", (e) => {
+e.preventDefault();
+embaralharTimes(times);
+});
+</script>
+</body>
 </html>
