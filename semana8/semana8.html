@@ -5,13 +5,13 @@
   <title>Beatriz & Leandro</title>
   <style>
     body {
-      background: linear-gradient(to right, #ff9a9e, #fad0c4);
+      background: linear-gradient(135deg, #ff758c, #ff7eb3, #fad0c4);
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
       margin: 0;
-      font-family: 'Arial', sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
     .container {
@@ -19,13 +19,15 @@
       color: white;
     }
 
+    /* Coração animado */
     .heart {
       position: relative;
       width: 150px;
       height: 135px;
       margin: 0 auto 20px;
-      background: red;
+      background: #ff1e56;
       transform: rotate(-45deg);
+      animation: pulse 1.2s infinite;
     }
 
     .heart::before,
@@ -35,7 +37,7 @@
       width: 150px;
       height: 150px;
       border-radius: 50%;
-      background: red;
+      background: #ff1e56;
     }
 
     .heart::before {
@@ -48,25 +50,31 @@
       top: 0;
     }
 
+    @keyframes pulse {
+      0% { transform: rotate(-45deg) scale(1); }
+      50% { transform: rotate(-45deg) scale(1.1); }
+      100% { transform: rotate(-45deg) scale(1); }
+    }
+
     h1 {
-      font-size: 2em;
+      font-size: 2.5em;
       margin: 0;
       color: #fff;
-      text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+      text-shadow: 0 0 10px #ff1e56, 0 0 20px #ff5c8a, 0 0 30px #ff85a1;
     }
 
     h2 {
-      font-size: 1.5em;
+      font-size: 1.8em;
       margin-top: 10px;
       color: #fff;
-      text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+      text-shadow: 0 0 8px #fff, 0 0 15px #ffb6c1;
     }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="heart"></div>
-    <h1>Beatriz ❤️ Leandro</h1>
+    <h1>💖 Beatriz & Leandro 💖</h1>
     <h2>100% de Amor</h2>
   </div>
 </body>
