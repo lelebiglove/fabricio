@@ -1,81 +1,92 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <title>Beatriz & Leandro</title>
-  <style>
-    body {
-      background: linear-gradient(135deg, #ff758c, #ff7eb3, #fad0c4);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
 
-    .container {
-      text-align: center;
-      color: white;
-    }
+<html>   
 
-    /* Coração animado */
-    .heart {
-      position: relative;
-      width: 150px;
-      height: 135px;
-      margin: 0 auto 20px;
-      background: #ff1e56;
-      transform: rotate(-45deg);
-      animation: pulse 1.2s infinite;
-    }
+   <head>
 
-    .heart::before,
-    .heart::after {
-      content: "";
-      position: absolute;
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      background: #ff1e56;
-    }
+      <meta charset="UTF-8">      
 
-    .heart::before {
-      top: -75px;
-      left: 0;
-    }
+   </head>
 
-    .heart::after {
-      left: 75px;
-      top: 0;
-    }
 
-    @keyframes pulse {
-      0% { transform: rotate(-45deg) scale(1); }
-      50% { transform: rotate(-45deg) scale(1.1); }
-      100% { transform: rotate(-45deg) scale(1); }
-    }
+   <body>
 
-    h1 {
-      font-size: 2.5em;
-      margin: 0;
-      color: #fff;
-      text-shadow: 0 0 10px #ff1e56, 0 0 20px #ff5c8a, 0 0 30px #ff85a1;
-    }
+      <div><button id="botaoCarregar">Carregando cervejas...</button></div>
 
-    h2 {
-      font-size: 1.8em;
-      margin-top: 10px;
-      color: #fff;
-      text-shadow: 0 0 8px #fff, 0 0 15px #ffb6c1;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <div class="heart"></div>
-    <h1>💖 Beatriz & Leandro 💖</h1>
-    <h2>100% de Amor</h2>
-  </div>
-</body>
+      <div id="cervejasDiv"></div>            
+
+   </body>   
+
+   
+
+   <script>
+
+
+      let cervejas = []
+
+      
+
+      //cs é um array de cervejas
+
+      const carregarDiv = cs => {
+
+         const div = document.getElementById("cervejasDiv")
+
+         const itensHtml = cs.map( ({name,alcohol}) => `<div>${name} -- ${alcohol}</div>` ) 
+
+         div.innerHTML = `${itensHtml.join("\n")}`
+
+      }
+
+      
+
+      async function carregarCervejas(){
+
+         try{
+
+            let res = await fetch("https://random-data-api.com/api/v2/beers?size=3")
+
+            cervejas = await res.json()
+
+            carregarDiv(cervejas)
+
+         }catch(err){
+
+            document.getElementById("cervejasDiv").innerHTML = "Fudeu..."
+
+         }
+
+      }
+
+      
+
+      function chegouRespostaDoFetch(res){
+
+         document.getElementById("cervejasDiv").innerHTML = `Resposta do fetch() -- ${res}`
+
+      }
+
+      
+
+      function carregarCervejas2(){
+
+         let p = fetch("https://random-data-api.com/api/v2/beers?size=3")
+
+         p.then(chegouRespostaDoFetch)
+
+         document.getElementById("cervejasDiv").innerHTML = `Fazendo requisição`          
+
+      }
+
+      
+
+
+      let botao = document.getElementById("botaoCarregar")
+
+      botao.addEventListener("click", () => carregarCervejas2() )                 
+
+      
+
+   </script>
+
 </html>
