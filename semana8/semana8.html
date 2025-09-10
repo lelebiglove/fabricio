@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 
 <html>   
@@ -60,27 +61,13 @@
 
       
 
-      function chegouRespostaDoJson(json){
-
-         carregarDiv(json)         
-
-      }
-
-      
-
-      function chegouRespostaDoFetch(res){
-
-         res.json().then(chegouRespostaDoJson)
-
-      }
-
             
 
       function carregarCervejas2(){
 
          fetch("https://random-data-api.com/api/v2/beers?size=3").then(
 
-            chegouRespostaDoFetch
+            res => res.json().then( json => carregarDiv(json) )
 
          )
 
@@ -92,8 +79,10 @@
 
       let botao = document.getElementById("botaoCarregar")
 
-      botao.addEventListener("click", () => carregarCervejas3() )                 
+      botao.addEventListener("click", () => carregarCervejas2() )                 
 
       
 
    </script>
+
+</html>
