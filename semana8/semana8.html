@@ -1,93 +1,130 @@
 <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Explorador de Bebidas</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #ffe6e6, #fff7f0);
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+  }
 
-<html>   
+  h1 {
+    color: #cc0033;
+    margin-bottom: 20px;
+  }
 
-   <head>
+  button {
+    margin: 5px;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 6px;
+    background-color: #cc0033;
+    color: white;
+    cursor: pointer;
+    font-size: 1em;
+  }
 
-      <meta charset="UTF-8">      
+  button:hover {
+    background-color: #990026;
+  }
 
-   </head>
+  table {
+    border-collapse: collapse;
+    margin: 20px auto;
+    width: 90%;
+    max-width: 700px;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  }
 
+  th, td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+  }
 
-   <body>
+  th {
+    background-color: #cc0033;
+    color: white;
+  }
 
-      <div><button id="botaoCarregar">Carregando cervejas...</button></div>
+  tr:nth-child(even) {
+    background-color: #f7f7f7;
+  }
 
-      <div id="cervejasDiv"></div>            
+  tr:hover {
+    background-color: #ffe6e6;
+  }
+</style>
+</head>
+<body>
 
-   </body>   
+<h1>Explorador de Bebidas 🍺☕</h1>
 
-   
+<div>
+  <button id="btnCervejas">Carregar Cervejas</button>
+  <button id="btnCafes">Carregar Cafés</button>
+</div>
 
-   <script>
+<div id="conteudo"></div>
 
+<script>
+  // Função genérica para montar tabela
+  function montarTabela(objetos, headers = [], props = []) {
+    if (!objetos || objetos.length === 0) return "<p>Nenhum dado encontrado</p>";
 
-      let cervejas = []
+    const thead = "<tr>" + headers.map(h => `<th>${h}</th>`).join("") + "</tr>";
+    const tbody = objetos.map(o => 
+      "<tr>" + props.map(p => `<td>${o[p] ?? ""}</td>`).join("") + "</tr>"
+    ).join("");
 
-      
+    return `<table>${thead}${tbody}</table>`;
+  }
 
-      //cs é um array de cervejas
+  const divConteudo = document.getElementById("conteudo");
 
-      const carregarDiv = cs => {
+  // Função para carregar cervejas (Promise / then / catch)
+  function carregarCervejas() {
+    divConteudo.innerHTML = "Carregando cervejas...";
+    fetch("https://api.openbrewerydb.org/v1/breweries?per_page=5")
+      .then(res => res.json())
+      .then(data => {
+        // Propriedades que vamos mostrar
+        const props = ["name", "brewery_type", "city", "state"];
+        const headers = ["Nome", "Tipo", "Cidade", "Estado"];
+        divConteudo.innerHTML = montarTabela(data, headers, props);
+      })
+      .catch(err => {
+        divConteudo.innerHTML = "Erro ao carregar cervejas: " + err;
+      });
+  }
 
-         const div = document.getElementById("cervejasDiv")
+  // Função para carregar "cafés" (exemplo com outra API)
+  function carregarCafes() {
+    divConteudo.innerHTML = "Carregando cafés...";
+    fetch("https://api.sampleapis.com/coffee/hot")
+      .then(res => res.json())
+      .then(data => {
+        // Mostrando apenas 5 itens para não ficar gigante
+        const cafés = data.slice(0, 5);
+        const props = ["title", "description"];
+        const headers = ["Nome do Café", "Descrição"];
+        divConteudo.innerHTML = montarTabela(cafés, headers, props);
+      })
+      .catch(err => {
+        divConteudo.innerHTML = "Erro ao carregar cafés: " + err;
+      });
+  }
 
-         const itensHtml = cs.map( ({name,alcohol}) => `<div>${name} -- ${alcohol}</div>` ) 
+  document.getElementById("btnCervejas").addEventListener("click", carregarCervejas);
+  document.getElementById("btnCafes").addEventListener("click", carregarCafes);
+</script>
 
-         div.innerHTML = `${itensHtml.join("\n")}`
-
-      }
-
-      
-
-      async function carregarCervejas(){
-
-         try{
-
-            let res = await fetch("https://random-data-api.com/api/v2/beers?size=3")
-
-            cervejas = await res.json()
-
-            carregarDiv(cervejas)
-
-         }catch(err){
-
-            document.getElementById("cervejasDiv").innerHTML = "Fudeu..."
-
-         }
-
-      }
-
-            
-
-      function carregarCervejas2(){
-
-         fetch("https://random-data-api.com/api/v2/beers?size=3").then(
-
-            res => res.json()
-
-         ).then( 
-
-            json => carregarDiv(json) 
-
-         ).catch(
-
-            err => document.getElementById("cervejasDiv").innerHTML = `Fudeu... ${err}`
-
-         )
-
-         document.getElementById("cervejasDiv").innerHTML = `Fazendo requisição`          
-
-      }
-
-      
-
-      let botao = document.getElementById("botaoCarregar")
-
-      botao.addEventListener("click", () => carregarCervejas2() )                 
-
-      
-
-   </script>
-
+</body>
 </html>
