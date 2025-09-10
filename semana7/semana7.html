@@ -1,27 +1,76 @@
-let cervejas = [
+<!DOCTYPE html>
 
-   {
+<html>   
 
-      name: "Founders Breakfast Stout", 
+   <head>
 
-      alcohol: "7.6%"            
+      <meta charset="UTF-8">      
 
-   }, 
+   </head>
 
-   {
 
-      name: "Celebrator Doppelbock",
+   <body>
 
-      alcohol: "3.1%"             
+      <div><button id="botaoCarregar">Carregando cervejas...</button></div>
 
-   }, 
+      <div id="cervejasDiv"></div>            
 
-   {
+   </body>   
 
-      name: "Dreadnaught",
+   
 
-      alcohol: "6.1%"             
+   <script>
 
-   }
 
-]
+      let cervejas = [
+
+         {
+
+            name: "Founders Breakfast Stout", 
+
+            alcohol: "7.6%"            
+
+         }, 
+
+         {
+
+            name: "Celebrator Doppelbock",
+
+            alcohol: "3.1%"             
+
+         }, 
+
+         {
+
+            name: "Dreadnaught",
+
+            alcohol: "6.1%"             
+
+         }
+
+      ]
+
+
+    
+
+      //cs é um array de cervejas
+
+      const carregarDiv = cs => {
+
+         const div = document.getElementById("cervejasDiv")
+
+         const itensHtml = cs.map( ({name,alcohol}) => `<div>${name} -- ${alcohol}</div>` ) 
+
+         div.innerHTML = `${itensHtml.join("\n")}`
+
+      }
+
+
+      let botao = document.getElementById("botaoCarregar")
+
+      botao.addEventListener("click", () => carregarDiv(cervejas) )                 
+
+
+   </script>
+
+</html>
