@@ -60,13 +60,25 @@
 
       
 
-      function chegouRespostaDoFetch(res){
+      function chegouRespostaDoJson(json){
 
-         document.getElementById("cervejasDiv").innerHTML = `Resposta do fetch() -- ${res}`
+         cervejas = json
+
+         carregarDiv(cervejas)         
 
       }
 
       
+
+      function chegouRespostaDoFetch(res){
+
+         let p = res.json()
+
+         p.then(chegouRespostaDoJson)
+
+      }
+
+            
 
       function carregarCervejas2(){
 
@@ -90,3 +102,4 @@
    </script>
 
 </html>
+
