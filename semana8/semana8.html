@@ -44,7 +44,7 @@
 
          try{
 
-            let res = await fetch("https://random-data-api.com/api/v2/beers?size=3")
+            let res = await fetch("https://random-data-ai.com/api/v2/beers?size=3")
 
             cervejas = await res.json()
 
@@ -62,9 +62,7 @@
 
       function chegouRespostaDoJson(json){
 
-         cervejas = json
-
-         carregarDiv(cervejas)         
+         carregarDiv(json)         
 
       }
 
@@ -72,9 +70,7 @@
 
       function chegouRespostaDoFetch(res){
 
-         let p = res.json()
-
-         p.then(chegouRespostaDoJson)
+         res.json().then(chegouRespostaDoJson)
 
       }
 
@@ -82,9 +78,11 @@
 
       function carregarCervejas2(){
 
-         let p = fetch("https://random-data-api.com/api/v2/beers?size=3")
+         fetch("https://random-data-api.com/api/v2/beers?size=3").then(
 
-         p.then(chegouRespostaDoFetch)
+            chegouRespostaDoFetch
+
+         )
 
          document.getElementById("cervejasDiv").innerHTML = `Fazendo requisição`          
 
@@ -92,14 +90,10 @@
 
       
 
-
       let botao = document.getElementById("botaoCarregar")
 
-      botao.addEventListener("click", () => carregarCervejas2() )                 
+      botao.addEventListener("click", () => carregarCervejas3() )                 
 
       
 
    </script>
-
-</html>
-
